@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CS408 Lab 2</string>
+    <string name="action_settings">Settings</string>
+    <string name="textview">TextView</string>
+    <string name="paper">PAPER</string>
+    <string name="rock">ROCK</string>
+    <string name="scissors">Scissors</string>
+</resources>
