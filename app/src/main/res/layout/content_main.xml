@@ -22,21 +22,24 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/buttonRock"
-            android:layout_width="wrap_content"
+            android:id="@+id/rockButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="rockButtonClicked"
             android:text="@string/rock" />
 
         <Button
-            android:id="@+id/buttonPaper"
-            android:layout_width="wrap_content"
+            android:id="@+id/paperButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="paperButtonClicked"
             android:text="@string/paper" />
 
         <Button
-            android:id="@+id/buttonScissors"
-            android:layout_width="wrap_content"
+            android:id="@+id/scissorsButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="scissorsButtonClicked"
             android:text="@string/scissors" />
 
         <TextView

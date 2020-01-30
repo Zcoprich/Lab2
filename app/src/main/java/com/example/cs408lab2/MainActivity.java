@@ -11,8 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    private String playerWeapon;
+    private String computerWeapon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,44 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        int playerScore = 0;
+        int computerScore = 0;
+
+        TextView intro = (TextView) findViewById(R.id.introText);
+        String introduction = "Welcome to Rock-Paper-Scissors!" + "\n" + "    Please choose your weapon:";
+        intro.setText(introduction);
+
+        TextView score = (TextView) findViewById(R.id.scoreText);
+        String scr = "Player: " + playerScore + "  Computer: " + computerScore;
+        score.setText(scr);
+    }
+
+    public void rockButtonClicked(View v)
+    {
+        playerWeapon = "Rock";
+        TextView output = (TextView) findViewById(R.id.outputText);
+        String msg = "Player's Weapon: " + playerWeapon;
+        output.setText(msg);
+
+    }
+
+    public void paperButtonClicked(View v)
+    {
+        playerWeapon = "Paper";
+        TextView output = (TextView) findViewById(R.id.outputText);
+        String msg = "Player's Weapon: " + playerWeapon;
+        output.setText(msg);
+
+    }
+
+    public void scissorsButtonClicked(View v)
+    {
+        playerWeapon = "Scissors";
+        TextView output = (TextView) findViewById(R.id.outputText);
+        String msg = "Player's Weapon: " + playerWeapon;
+        output.setText(msg);
+
     }
 
     @Override
@@ -52,4 +96,24 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public enum Weapon {
+
+        ROCK("Rock"),
+        PAPER("Paper"),
+        SCISSORS("Scissors");
+        private String message;
+
+        private Weapon(String msg) { message = msg; }
+
+        @Override
+        public String toString() { return message; }
+
+        public Weapon getRandomWeapon(){
+            Weapon[] values = Weapon.values();
+            Random r = new Random();
+            return (values[r.nextInt(values.length)]);
+        }
+
+    };
 }
