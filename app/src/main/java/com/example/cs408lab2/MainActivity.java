@@ -18,7 +18,10 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private String playerWeapon;
-    private String computerWeapon;
+    private Weapon computerWeapon;
+    String winner;
+    int playerScore;
+    int computerScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        int playerScore = 0;
-        int computerScore = 0;
 
         TextView intro = (TextView) findViewById(R.id.introText);
         String introduction = "Welcome to Rock-Paper-Scissors!" + "\n" + "    Please choose your weapon:";
         intro.setText(introduction);
+        playerScore = 0;
+        computerScore = 0;
 
         TextView score = (TextView) findViewById(R.id.scoreText);
         String scr = "Player: " + playerScore + "  Computer: " + computerScore;
@@ -50,30 +53,85 @@ public class MainActivity extends AppCompatActivity {
 
     public void rockButtonClicked(View v)
     {
-        playerWeapon = "Rock";
         TextView output = (TextView) findViewById(R.id.outputText);
-        String msg = "Player's Weapon: " + playerWeapon;
+        TextView result = (TextView) findViewById(R.id.resultText);
+
+        playerWeapon = "Rock";
+        computerWeapon = Weapon.getRandomWeapon();
+
+        String msg = " Player's Weapon: " + playerWeapon + "\n" + "Computer's Weapon: " + computerWeapon.toString();
         output.setText(msg);
+
+        if(computerWeapon == Weapon.PAPER) {
+            winner = "Computer wins...Paper covers Rock.";
+            computerScore++;
+        }
+        else if (computerWeapon == Weapon.SCISSORS) {
+            winner = "Player wins...Rock blunts Scissors.";
+            playerScore++;
+        }
+        else
+            winner = "It is a Tie!";
+
+        result.setText(winner);
+
 
     }
 
     public void paperButtonClicked(View v)
     {
+        TextView output = (TextView) findViewById(R.id.outputText);
+        TextView result = (TextView) findViewById(R.id.resultText);
+
         playerWeapon = "Paper";
-        TextView output = (TextView) findViewById(R.id.outputText);
-        String msg = "Player's Weapon: " + playerWeapon;
+        computerWeapon = Weapon.getRandomWeapon();
+
+        String msg = " Player's Weapon: " + playerWeapon + "\n" + "Computer's Weapon: " + computerWeapon.toString();
         output.setText(msg);
+
+        if(computerWeapon == Weapon.SCISSORS) {
+            winner = "Computer wins...Scissors cuts Paper.";
+            computerScore++;
+        }
+        else if (computerWeapon == Weapon.ROCK) {
+            winner = "Player wins...Paper covers Rock.";
+            playerScore++;
+        }
+        else
+            winner = "It is a Tie!";
+
+        result.setText(winner);
+
 
     }
 
-    public void scissorsButtonClicked(View v)
-    {
+    public void scissorsButtonClicked(View v){
+
+        TextView output = (TextView) findViewById(R.id.outputText);
+        TextView result = (TextView) findViewById(R.id.resultText);
+
         playerWeapon = "Scissors";
-        TextView output = (TextView) findViewById(R.id.outputText);
-        String msg = "Player's Weapon: " + playerWeapon;
+        computerWeapon = Weapon.getRandomWeapon();
+
+        String msg = " Player's Weapon: " + playerWeapon + "\n" + "Computer's Weapon: " + computerWeapon.toString();
         output.setText(msg);
 
+        if(computerWeapon == Weapon.ROCK) {
+            winner = "Computer wins...Rock blunts Scissors.";
+            computerScore++;
+        }
+        else if (computerWeapon == Weapon.ROCK) {
+            winner = "Player wins...Scissors cuts Paper.";
+            playerScore++;
+        }
+        else
+            winner = "It is a Tie!";
+
+        result.setText(winner);
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public String toString() { return message; }
 
-        public Weapon getRandomWeapon(){
+        public static Weapon getRandomWeapon() {
             Weapon[] values = Weapon.values();
             Random r = new Random();
             return (values[r.nextInt(values.length)]);
