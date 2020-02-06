@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         playerScore = 0;
         computerScore = 0;
 
+        updateScore();
+    }
+
+    public void updateScore()
+    {
         TextView score = (TextView) findViewById(R.id.scoreText);
         String scr = "Player: " + playerScore + "  Computer: " + computerScore;
         score.setText(scr);
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             winner = "It is a Tie!";
 
         result.setText(winner);
+        updateScore();
 
 
     }
@@ -101,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             winner = "It is a Tie!";
 
         result.setText(winner);
-
+        updateScore();
 
     }
 
@@ -128,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             winner = "It is a Tie!";
 
         result.setText(winner);
-
+        updateScore();
 
     }
 
